@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project 
+	xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -8,14 +10,16 @@
 		<version>2.7.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.genedle</groupId>
+	<groupId>genedle</groupId>
 	<artifactId>car_shopping</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>GeneCar</name>
 	<description>GeneCar project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+		<querydsl.version>5.0.0</querydsl.version>
 	</properties>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -69,6 +73,24 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+	    <!-- MySQL -->
+	    <dependency>
+	      <groupId>mysql</groupId>
+	      <artifactId>mysql-connector-java</artifactId>
+	      <version>8.0.16</version>
+	    </dependency>	
+	    
+   	    <!-- 다날 본인인증 라이브러리 외부 추가-->
+	    <!--
+	    <dependency>
+	      <groupId>kr.co.danal</groupId>
+	      <artifactId>jsinbi-jvm</artifactId>
+	      <version>1.6.1</version>
+	      <scope>system</scope>
+	      <systemPath>${project.basedir}/repo/kr/co/danal/jsinbi-jvm/1.6.1/jsinbi-jvm-1.6.1.jar
+	      </systemPath>
+	    </dependency>
+	    -->
 	</dependencies>
 
 	<build>
