@@ -19,7 +19,7 @@ public class MemberComtroller {
   
   @PostMapping("/login")
   @ResponseBody
-  public MemberVO joinUser(@RequestBody String mbrId, String mbrPw) throws Exception {
+  public Boolean joinUser(@RequestBody String mbrId, String mbrPw) throws Exception {
     return memberService.selectLogin(mbrId, mbrPw);
   }
 }

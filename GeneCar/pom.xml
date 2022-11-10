@@ -79,7 +79,10 @@
 	      <artifactId>mysql-connector-java</artifactId>
 	      <version>8.0.16</version>
 	    </dependency>	
-	    
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-web</artifactId>
+	    </dependency>	    
    	    <!-- 다날 본인인증 라이브러리 외부 추가-->
 	    <!--
 	    <dependency>
