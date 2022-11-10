@@ -3,8 +3,10 @@
         
 <mapper namespace="genecar.member.mapper.MemberMapper">
 
-	<select id="selectLogin" parameterType="memberVO">
-		SELECT * FROM MEMBER
+	<select id="selectLogin" parameterType="">
+		SELECT MBR_ID
+				  , MBR_PW 
+		  FROM MEMBER
 	</select>
 
 
