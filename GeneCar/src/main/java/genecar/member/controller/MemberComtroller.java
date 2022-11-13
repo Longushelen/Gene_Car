@@ -11,13 +11,12 @@ import genecar.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequiredArgsConstructor
 public class MemberComtroller {
 
   @Autowired
   MemberService memberService;
   
-  @PostMapping("/login")
+  @PostMapping("/api/login")
   @ResponseBody
   public Boolean joinUser(@RequestBody String mbrId, String mbrPw) throws Exception {
     return memberService.selectLogin(mbrId, mbrPw);

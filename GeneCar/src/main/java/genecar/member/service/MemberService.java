@@ -1,6 +1,7 @@
 package genecar.member.service;
 
 import org.springframework.stereotype.Service;
+
 import genecar.member.mapper.MemberMapper;
 import genecar.member.vo.MemberVO;
 import lombok.RequiredArgsConstructor;
