@@ -1,9 +1,13 @@
 package genecar.member.vo;
 
 import java.time.LocalDateTime;
+
+import org.apache.ibatis.type.Alias;
+
 import lombok.Data;
 
 @Data
+@Alias("MemberVO")
 public class MemberVO {
 
   private String mbrId;

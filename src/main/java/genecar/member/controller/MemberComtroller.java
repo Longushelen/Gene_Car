@@ -1,16 +1,17 @@
 package genecar.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import genecar.member.service.MemberService;
 import genecar.member.vo.MemberVO;
-import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
-@Controller
+@Slf4j
+@RestController
 public class MemberComtroller {
 
   @Autowired
@@ -18,7 +19,9 @@ public class MemberComtroller {
   
   @PostMapping("/api/login")
   @ResponseBody
-  public Boolean joinUser(@RequestBody String mbrId, String mbrPw) throws Exception {
-    return memberService.selectLogin(mbrId, mbrPw);
+  public Boolean joinUser(@RequestBody MemberVO paramVO) throws Exception {
+	  
+	  log.info("[ joinUser ] param {}", paramVO);  
+	  return memberService.selectLogin(paramVO);
   }
 }

@@ -6,6 +6,6 @@ import genecar.member.vo.MemberVO;
 @Mapper
 public interface MemberMapper {
 
-  MemberVO selectLongin(String mbrId, String mbrPw) throws Exception;
+  MemberVO selectLogin(MemberVO paramVO) throws Exception;
     
 }

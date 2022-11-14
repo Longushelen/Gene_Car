@@ -12,11 +12,11 @@ public class MemberService {
   
   private final MemberMapper memberMapper;
 
-  public Boolean selectLogin(String mbrId, String mbrPw) throws Exception {
+  public Boolean selectLogin(MemberVO paramVO) throws Exception {
     
-    MemberVO vo = memberMapper.selectLongin(mbrId, mbrPw);
+    MemberVO vo = memberMapper.selectLogin(paramVO);
     
-    if(vo.getMbrId() == mbrId && vo.getMbrPw() == mbrPw) {
+    if(vo.getMbrId().equals(paramVO.getMbrId()) && vo.getMbrPw().equals(paramVO.getMbrPw())) {
       return true;
     } else {
       return false;
