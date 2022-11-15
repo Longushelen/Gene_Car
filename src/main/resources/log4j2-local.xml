@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <Properties>
+        <Property name="LOG_PATH">/Logs</Property>
+    </Properties>
+    
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yy.MM.dd HH:mm:ss } %highlight{%-5p}{FATAL=red, ERROR=red,
+            INFO=green, DEBUG=blue} [ %file :: %line ] %m%n" />
+        </Console>
+        <Policies>
+            <SizeBasedTriggeringPolicy size="100MB"/>
+            <TimeBasedTriggeringPolicy interval = "1" modulate = "true"/>
+        </Policies>        
+    </Appenders>
+    
+    <Loggers>
+        
+        <!--Log4jdbc Start -->
+		<logger name="jdbc" level="info" />
+		<logger name="jdbc.connection" level="OFF"/>
+		<logger name="jdbc.sqlonly" level="info"/>
+		<logger name="jdbc.audit" level="OFF"/>
+		<logger name="jdbc.resultset" level="OFF"/>
+		<logger name="jdbc.resultsettable" level="info"/>
+        <!--Log4jdbc End -->
+        
+        <Logger name="egovframework" level="warn" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="org.springframework" level="warn" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        
+        <Root level="debug">
+            <AppenderRef ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>

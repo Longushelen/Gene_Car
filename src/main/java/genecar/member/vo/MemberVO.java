@@ -1,12 +1,14 @@
 package genecar.member.vo;
 
 import java.time.LocalDateTime;
-
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.ibatis.type.Alias;
+import lombok.Getter;
+import lombok.Setter;
 
-import lombok.Data;
-
-@Data
+@Getter
+@Setter
 @Alias("MemberVO")
 public class MemberVO {
 
@@ -27,4 +29,8 @@ public class MemberVO {
   private LocalDateTime iUpdDt;
   private LocalDateTime admUpdDt;
   
+  @Override
+  public String toString() {
+      return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+  }
 }

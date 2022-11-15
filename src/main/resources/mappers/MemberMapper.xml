@@ -5,8 +5,8 @@
 
 	<select id="selectLogin" parameterType="MemberVO" resultType="MemberVO">
 		SELECT MBR_ID
-			 , MBR_PW 
-		  FROM MEMBER
+			 	  , MBR_PW 
+		FROM MEMBER
 	</select>
 
 

@@ -18,10 +18,10 @@ public class MemberComtroller {
   MemberService memberService;
   
   @PostMapping("/api/login")
-  @ResponseBody
   public Boolean joinUser(@RequestBody MemberVO paramVO) throws Exception {
 	  
-	  log.info("[ joinUser ] param {}", paramVO);  
+	  log.info("[ joinUser ] param {}", paramVO); 
+	  
 	  return memberService.selectLogin(paramVO);
   }
 }
