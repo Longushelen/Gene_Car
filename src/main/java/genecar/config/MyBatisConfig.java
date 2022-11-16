@@ -1,7 +1,6 @@
 package genecar.config;
 
 import javax.sql.DataSource;
-
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class MyBatisConfig {
     sessionFactory.setMapperLocations(resolver.getResources("classpath:mappers/*.xml"));
     sessionFactory.setConfigLocation(
         applicationContext.getResource("classpath:mybatis-config.xml"));
-    sessionFactory.setTypeAliasesPackage("genecar.**.vo");
+    sessionFactory.setTypeAliasesPackage("sangs.**.vo");
     sessionFactory.getObject().getConfiguration().setMapUnderscoreToCamelCase(true);
     return sessionFactory.getObject();
   }

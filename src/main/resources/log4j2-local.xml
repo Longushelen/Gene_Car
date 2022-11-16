@@ -7,13 +7,12 @@
     
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yy.MM.dd HH:mm:ss } %highlight{%-5p}{FATAL=red, ERROR=red,
-            INFO=green, DEBUG=blue} [ %file :: %line ] %m%n" />
+            <PatternLayout pattern="%d{yy.MM.dd HH:mm:ss } %highlight{%-5p}{FATAL=red, ERROR=red, INFO=green, DEBUG=blue} [ %file :: %line ] %m%n" />
         </Console>
         <Policies>
             <SizeBasedTriggeringPolicy size="100MB"/>
             <TimeBasedTriggeringPolicy interval = "1" modulate = "true"/>
-        </Policies>        
+        </Policies>               
     </Appenders>
     
     <Loggers>

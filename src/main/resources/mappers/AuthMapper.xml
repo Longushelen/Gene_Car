@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sangs.security.mapper.AuthMapper">
+    
+    <select id="loadAdminByUsername" parameterType="string"  resultType="AuthVO">
+        <![CDATA[
+            SELECT
+                MBR_ID AS username
+				, MBR_NM AS MBR_NM
+				, EMP_PW AS password
+            FROM MEBER 
+            WHERE EMP_ID=#{id}
+        ]]>
+    </select>
+
+</mapper>
