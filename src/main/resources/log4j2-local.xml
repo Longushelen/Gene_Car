@@ -2,30 +2,43 @@
 <Configuration>
 
     <Properties>
-        <Property name="LOG_PATH">/Logs</Property>
+        <Property name="LOG_PATH">./Logs</Property>
     </Properties>
     
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yy.MM.dd HH:mm:ss } %highlight{%-5p}{FATAL=red, ERROR=red,
-            INFO=green, DEBUG=blue} [ %file :: %line ] %m%n" />
+            <PatternLayout pattern="%d %5p [%file => %line] %m%n" />
         </Console>
-        <Policies>
-            <SizeBasedTriggeringPolicy size="100MB"/>
-            <TimeBasedTriggeringPolicy interval = "1" modulate = "true"/>
-        </Policies>        
+        <RollingFile name ="RollingFile2">
+            <FileName>${LOG_PATH}/genecar.log</FileName>
+            <FilePattern>${LOG_PATH}/genecar.%d{yyyy-MM-dd}.%i.log.gz</FilePattern>
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %5p [%c] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100MB"/>
+                <TimeBasedTriggeringPolicy interval = "1" modulate = "true"/>
+            </Policies>
+        </RollingFile>
     </Appenders>
     
     <Loggers>
         
         <!--Log4jdbc Start -->
-		<logger name="jdbc" level="info" />
+		<logger name="jdbc" level="info"/>
 		<logger name="jdbc.connection" level="OFF"/>
 		<logger name="jdbc.sqlonly" level="info"/>
+		<logger name="jdbc.sqltiming" level="info" additivity="false">
+			<!-- <appender-ref ref="DATABASE_FILE_APPENDER"/> -->
+		</logger>
 		<logger name="jdbc.audit" level="OFF"/>
-		<logger name="jdbc.resultset" level="OFF"/>
+		<logger name="jdbc.resultset" level="info"/>
 		<logger name="jdbc.resultsettable" level="info"/>
         <!--Log4jdbc End -->
+        
+        <Logger name="genecar" level="debug" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
         
         <Logger name="egovframework" level="warn" additivity="false">
             <AppenderRef ref="console" />

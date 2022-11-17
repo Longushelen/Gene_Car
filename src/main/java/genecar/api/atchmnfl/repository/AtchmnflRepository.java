@@ -1,0 +1,15 @@
+package genecar.api.atchmnfl.repository;
+
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+import org.springframework.stereotype.Repository;
+import genecar.api.atchmnfl.entity.Atchmnfl;
+
+@Repository
+public interface AtchmnflRepository extends JpaRepository<Atchmnfl, Integer>,
+    QuerydslPredicateExecutor<Atchmnfl> {
+
+  Optional<Atchmnfl> findByAtchmnflNm(String atchmnflNm);
+
+}

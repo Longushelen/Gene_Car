@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="genecar.root.security.mapper.AuthMapper">
+	<select id="loadUserByUsername" parameterType="string"  resultType="AuthVO">
+        <![CDATA[
+            SELECT
+                MBR_ID as username
+				, C_MBR_NM as 	MBR_NM
+				, MBR_PW as password
+            FROM MEMBER 
+            WHERE MBR_ID=#{id}
+        ]]>
+    </select>
+    <select id="loadAdminByUsername" parameterType="string"  resultType="AuthVO">
+        <![CDATA[
+            SELECT
+                EMP_ID AS username
+				, EMP_NM AS MBR_NM
+				, EMP_PW AS password
+				, EMP_ROLE AS role
+            FROM EMPLOYEE 
+            WHERE EMP_ID=#{id}
+        ]]>
+    </select>
+    
+    <select id="getPrivileges" parameterType="string"  resultType="PrivilegeVO">
+        <![CDATA[
+             SELECT 
+			    T1.ROLE_ID,
+			    T1.MENU_ID,
+			    T2.MENU_NM,
+			    T2.MENU_PATH,
+			    T1.RESOURCE_CD,
+                T4.CMMN_CD_NM AS RESOURCE_NM,
+			    T3.RESOURCE_PATH
+			FROM
+			    PRIVILEGE T1
+			        INNER JOIN
+			    MENU T2 ON T1.MENU_ID = T2.MENU_ID
+			        INNER JOIN
+			    MENU_RESOURCE T3 ON T1.MENU_ID = T3.MENU_ID
+			        AND T1.RESOURCE_CD = T3.RESOURCE_CD
+				INNER JOIN
+                ( SELECT CMMN_CD, CMMN_CD_NM FROM COMMON_CODE WHERE PRNTS_CD = 'CMN_900' )T4 ON T1.RESOURCE_CD = T4.CMMN_CD
+		    WHERE T1.ROLE_ID=#{roleId}
+        ]]>
+    </select>
+    
+
+</mapper>

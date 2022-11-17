@@ -3,7 +3,11 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<typeAliases>
-    	<typeAlias alias="MemberVO" type="genecar.member.vo.MemberVO"/>
-    </typeAliases>    
+
+  <typeAliases>
+    <typeAlias alias="PackingVO" type="genecar.root.common.vo.PackingVO"/>
+    <typeAlias alias="PathVO" type="genecar.root.common.vo.PathVO"/>
+
+  </typeAliases>
+
 </configuration>

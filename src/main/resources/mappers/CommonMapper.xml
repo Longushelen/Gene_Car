@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="genecar.root.common.mapper.CommonMapper">
+
+	<resultMap id="packing" type="PackingVO">
+		<result property="id" column="id" />
+		<result property="timestamp" column="timestamp" />
+		<result property="path" column="path" />
+		<result property="input" column="input" jdbcType="VARCHAR"
+			typeHandler="genecar.root.common.handler.ObjectToStringTypeHandler" />
+		<result property="output" column="output" jdbcType="VARCHAR"
+			typeHandler="genecar.root.common.handler.ObjectToStringTypeHandler" />
+		<result property="code" column="code" />
+		<result property="msg" column="msg" />
+		<result property="msgDetail" column="msg_detail" />
+	</resultMap>
+
+	<resultMap id="menu" type="PathVO">
+		<result property="path" column="path" />
+		<result property="name" column="menu_nm" />
+		<result property="loginRequireYn" column="login_require_yn" />
+	</resultMap>
+
+	<resultMap id="api" type="PathVO">
+		<result property="path" column="path" />
+		<result property="name" column="use_detail" />
+		<result property="loginRequireYn" column="login_require_yn" />
+	</resultMap>
+
+	<insert id="insertLog" parameterType="PackingVO">
+		<![CDATA[
+			INSERT INTO LOG 
+				( id
+				  , timestamp
+				  , path
+				  , input
+				  , output
+				  , code
+				  , msg
+				  , msg_detail )
+            VALUES ( #{id}
+                  , #{timestamp}
+                  , #{path}
+                  , #{input,typeHandler=genecar.root.common.handler.ObjectToStringTypeHandler}
+                  , #{output}
+                  , #{code}
+                  , #{msg,typeHandler=genecar.root.common.handler.MsgTrunkTypeHandler}
+                  , #{msgDetail,typeHandler=genecar.root.common.handler.MsgDetailTrunkTypeHandler} )
+		]]>
+	</insert>
+
+	<select id="selectLogById" parameterType="String"
+		resultMap="packing">
+        <![CDATA[
+            SELECT
+                id
+                , timestamp
+                , path
+                , input
+                , output
+                , code
+                , msg
+                , msg_detail
+            FROM log 
+            WHERE id = #{id}
+        ]]>
+	</select>
+
+	<select id="selectLogByRange" parameterType="hashmap"
+		resultMap="packing">
+        <![CDATA[
+            SELECT
+                id
+                , timestamp
+                , path
+                , input
+                , output
+                , code
+                , msg
+                , msg_detail
+            FROM log 
+            WHERE timestamp between #{start} and #{end}
+        ]]>
+	</select>
+
+	<select id="selectMenuByPath" parameterType="String"
+		resultMap="menu">
+        <![CDATA[
+            SELECT
+                path
+                , menu_nm
+                , login_require_yn
+            FROM menu 
+            WHERE path = #{path}
+        ]]>
+	</select>
+
+	<select id="selectApiByPath" parameterType="String"
+		resultMap="api">
+        <![CDATA[
+            SELECT
+                path
+                , use_detail
+                , login_require_yn
+            FROM api 
+            WHERE path = #{path}
+        ]]>
+	</select>
+	
+	<!-- 공통코드 조회 -->
+	<select id="selectCode" parameterType="map" resultType="map">
+		SELECT 
+			CMMN_CD
+		    , CMMN_CD_NM
+		FROM COMMON_CODE
+		WHERE 1=1
+		AND PRNTS_CD = #{prntsCd}
+		ORDER BY DISPLAY_SEQ ASC
+	</select>
+	
+	<!-- 번호 SEQ 조회 -->
+    <select id="selectSeq" parameterType="String" resultType="String">
+		SELECT NEXTVAL(#{seq}) 
+    </select>
+    
+    <!-- 관리자 작업이력 -->
+    <insert id="insertAdminWorkHist" parameterType="WorkHistVO">
+    
+    	INSERT INTO WORK_HISTORY
+			(
+			WORKER_ID,
+			MENU_ID,
+			MENU_NM,
+			RESOURCE_CD,
+			RESOURCE_NM,
+			WORK_DETAIL,
+			EXPLAN,
+			USER_IP,
+			REG_DT)
+		VALUES
+			(
+			#{workerId},
+			#{menuId},
+			#{menuNm},
+			#{resourceId},
+			#{resourceNm},
+			#{workDetail},
+			#{explan},
+			#{userIp},
+			NOW())
+    </insert>
+    
+</mapper>
